@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
+
 import { Site, Test } from "../../types/types";
+
 import { searchItems, searchSites } from "../../api/Api";
 
 const DashBoard = () => {
+
   const [items, setItems] = useState<Array<Test>>();
   const [sites, setSites] = useState<Array<Site>>([]);
+  const [input, setInput] = useState<string | undefined>('');
+
+
   useEffect(() => {
     searchSites().then((data) => {
       setSites(data);
@@ -12,19 +18,29 @@ const DashBoard = () => {
     searchItems().then((data) => {
       setItems(data);
     });
+    console.log('rerender')
   }, []);
 
   return (
     <div className="container">
       <h3>Dashboard</h3>
-      <div className="w100">
+      <div className="w100 search__input">
         <img src="" alt="search" />
-        <input type="text" placeholder="What test are you looking for?" />
+        <input type="text" placeholder="What test are you looking for?" value={input} onChange={(e)=>setInput(e.target.value)}/>
         <span>{items?.length} tests</span>
       </div>
-      {sites && (
+
+      {/* render data from api */}
+      {!sites || !items  ? 
+
+        /* download  */
         <>
-          <div  className="gridTable">
+          <h3>Download...</h3>
+        </> :   
+
+        // render items
+        <>
+        <div  className="gridTable">
             <span>NAME</span>
             <span>TYPE</span>
             <span>STATUS</span>
@@ -40,7 +56,10 @@ const DashBoard = () => {
             </div>
           ))}
         </>
-      )}
+      }
+
+
+
     </div>
   );
 };

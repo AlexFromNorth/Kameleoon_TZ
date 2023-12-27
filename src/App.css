@@ -11,18 +11,42 @@
   width: 100%;
 }
 
+/* search */
+.search__input{
+  border: 1px solid var(--border-grey);
+  border-radius: 10px;
+  background-color: yellow;
+}
+.search__input img{
+  margin: 15px;
+  width: 16px;
+}
+.search__input input{
+  width: calc(100% - 200px);
+  background-color: red;
+}
+.search__input span{
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* items */
 .gridTable {
   display: grid;
   grid-template-columns: 4fr repeat(2, 1fr) 2fr 1fr;
   grid-column-gap: 5px;
   margin: 5px 0;
-  padding: 25px 15px;
+  padding: 15px 15px;
   border-radius: 3px;
   text-align: left;
 }
 .tableItem{
   background-color: var(--bg-white);
   border-left: 4px solid black;
+}
+.tableItem > *{
+  align-self: center;
 }
 
 /* borders color */
