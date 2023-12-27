@@ -1,13 +1,39 @@
 body {
   margin: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-grey);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* -------- */
+/* -------- */
+/* General variables */
+/* -------- */
+/* -------- */
+:root{
+  --bg-grey: #FAFAFA;
+  --bg-white: white;
+}
+
+
+
+/* -------- */
+/* -------- */
+/* General classes */
+/* -------- */
+/* -------- */
+
+.container{
+  margin: 48px;
+}
+.gridTable {
+  display: grid;
+  grid-template-columns: 4fr repeat(2, 1fr) 2fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
 }

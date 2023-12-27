@@ -1,15 +1,23 @@
 import axios from 'axios';
 
-const searchBooks = async () => {
+export const searchItems = async () => {
   try {
     const response = await axios.get(
       `http://localhost:3100/tests`
     );
     return response.data
-    // console.log(response)
   } catch (error) {
-    console.error('Error searching for books:', error);
+    console.error('Error searching for items:', error);
+  }
+}
+export const searchSites = async () => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3100/sites`
+    );
+    return response.data
+  } catch (error) {
+    console.error('Error searching for sites:', error);
   }
 }
 
-export default searchBooks;
