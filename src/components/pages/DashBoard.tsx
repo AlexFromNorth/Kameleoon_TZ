@@ -36,7 +36,7 @@ const DashBoard = () => {
               <span>{item.type}</span>
               <span className={item.status === 'ONLINE' ? 'green' : item.status === 'PAUSED' ? 'orange' : item.status === 'STOPPED' ? 'red' : ''  }>{item.status}</span>
               <span>{sites.find((site) => site.id === item.siteId)?.url}</span>
-              <span>{item.status === "DRAFT" ? "Finalize" : "Results"}</span>
+              <span className={item.status === "DRAFT" ? "btn_dark btn" : "btn_green btn"  }>{item.status === "DRAFT" ? "Finalize" : "Results"}</span>
             </div>
           ))}
         </>

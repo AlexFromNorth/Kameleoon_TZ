@@ -14,7 +14,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-grey);
   font-size: var(--default-size);
-  color: var(--default-color);
+  color: var(--default-color_grey);
 }
 
 /* -------- */
@@ -26,7 +26,7 @@ body {
 
 :root{
   --default-size: 12px;
-  --default-color: #5C5C5C;;
+  --default-color_grey: #5C5C5C;;
   --bg-grey: #FAFAFA;
   --bg-white: white;
   --border-orange: #E14165;
