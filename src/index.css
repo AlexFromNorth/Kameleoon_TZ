@@ -1,3 +1,9 @@
+/* --------- */
+/* --------- */
+/* Default styles */
+/* --------- */
+/* --------- */
+
 body {
   margin: 0;
   box-sizing: border-box;
@@ -7,6 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-grey);
+  font-size: 12px;
 }
 
 /* -------- */
@@ -14,26 +21,14 @@ body {
 /* General variables */
 /* -------- */
 /* -------- */
+
+
 :root{
   --bg-grey: #FAFAFA;
   --bg-white: white;
+  --border-orange: #E14165;
+  --border-blue: #8686FF;
+  --border-light_blue: #C2C2FF;
 }
 
 
-
-/* -------- */
-/* -------- */
-/* General classes */
-/* -------- */
-/* -------- */
-
-.container{
-  margin: 48px;
-}
-.gridTable {
-  display: grid;
-  grid-template-columns: 4fr repeat(2, 1fr) 2fr 1fr;
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
-}

@@ -17,25 +17,30 @@ const DashBoard = () => {
   return (
     <div className="container">
       <h3>Dashboard</h3>
-      <div>
+      <div className="w100">
         <img src="" alt="search" />
         <input type="text" placeholder="What test are you looking for?" />
-        <p>{items?.length} tests</p>
+        <span>{items?.length} tests</span>
       </div>
       {sites && (
         <>
-          {items?.map((item:Test) => (
-            <div key={item.id} className="gridTable tableItem">
+          <div  className="gridTable">
+            <span>NAME</span>
+            <span>TYPE</span>
+            <span>STATUS</span>
+            <span>SITE</span>
+          </div>
+          {items?.map((item: Test) => (
+            <div key={item.id} className={`gridTable tableItem ` + `color` + item.siteId } >
               <span>{item.name}</span>
               <span>{item.type}</span>
               <span>{item.status}</span>
-              <span>{sites.find((site)=>site.id === item.siteId)?.url}</span>
-              <span>{ item.status==='DRAFT' ? 'Finalize': 'Results'}</span>
+              <span>{sites.find((site) => site.id === item.siteId)?.url}</span>
+              <span>{item.status === "DRAFT" ? "Finalize" : "Results"}</span>
             </div>
           ))}
         </>
       )}
-
     </div>
   );
 };

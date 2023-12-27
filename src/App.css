@@ -1,3 +1,36 @@
+/* -------- */
+/* -------- */
+/* General classes */
+/* -------- */
+/* -------- */
+
+.container{
+  margin: 48px;
+}
+.w100{
+  width: 100%;
+}
+
+.gridTable {
+  display: grid;
+  grid-template-columns: 4fr repeat(2, 1fr) 2fr 1fr;
+  grid-column-gap: 5px;
+  margin: 5px 0;
+  padding: 25px 15px;
+  border-radius: 3px;
+  text-align: left;
+}
 .tableItem{
   background-color: var(--bg-white);
+  border-left: 4px solid black;
+}
+/* borders colo */
+.color1{
+  border-color: var(--border-orange);
+}
+.color2{
+  border-color: var(--border-light_blue);
+}
+.color3{
+  border-color: var(--border-blue);
 }
