@@ -34,7 +34,7 @@ const DashBoard = () => {
             <div key={item.id} className={`gridTable tableItem ` + `color` + item.siteId } >
               <span>{item.name}</span>
               <span>{item.type}</span>
-              <span>{item.status}</span>
+              <span className={item.status === 'ONLINE' ? 'green' : item.status === 'PAUSED' ? 'orange' : item.status === 'STOPPED' ? 'red' : ''  }>{item.status}</span>
               <span>{sites.find((site) => site.id === item.siteId)?.url}</span>
               <span>{item.status === "DRAFT" ? "Finalize" : "Results"}</span>
             </div>

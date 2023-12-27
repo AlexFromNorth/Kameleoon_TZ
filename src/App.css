@@ -24,7 +24,8 @@
   background-color: var(--bg-white);
   border-left: 4px solid black;
 }
-/* borders colo */
+
+/* borders color */
 .color1{
   border-color: var(--border-orange);
 }
@@ -33,4 +34,15 @@
 }
 .color3{
   border-color: var(--border-blue);
+}
+
+/* colors */
+.green{
+  color: var(--green);
+}
+.orange{
+  color: var(--orange);
+}
+.red{
+  color: var(--red);
 }
