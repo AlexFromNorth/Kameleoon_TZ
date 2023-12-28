@@ -8,8 +8,11 @@ const DashBoard = () => {
 
   const [items, setItems] = useState<Array<Test>>();
   const [sites, setSites] = useState<Array<Site>>([]);
-  const [input, setInput] = useState<string | undefined>('');
+  const [input, setInput] = useState<string>('a');
 
+  useEffect(() => {
+
+  }, [input])
 
   useEffect(() => {
     searchSites().then((data) => {
@@ -47,13 +50,16 @@ const DashBoard = () => {
             <span>SITE</span>
           </div>
           {items?.map((item: Test) => (
-            <div key={item.id} className={`gridTable tableItem ` + `color` + item.siteId } >
-              <span>{item.name}</span>
-              <span>{item.type}</span>
-              <span className={item.status === 'ONLINE' ? 'green' : item.status === 'PAUSED' ? 'orange' : item.status === 'STOPPED' ? 'red' : ''  }>{item.status}</span>
-              <span>{sites.find((site) => site.id === item.siteId)?.url}</span>
-              <span className={item.status === "DRAFT" ? "btn_dark btn" : "btn_green btn"  }>{item.status === "DRAFT" ? "Finalize" : "Results"}</span>
-            </div>
+            new RegExp(input).test(item.name)&& (
+              <div key={item.id} className={`gridTable tableItem ` + `color` + item.siteId } >
+                <span>{item.name}</span>
+                <span>{item.type}</span>
+                <span className={item.status === 'ONLINE' ? 'green' : item.status === 'PAUSED' ? 'orange' : item.status === 'STOPPED' ? 'red' : ''  }>{item.status}</span>
+                <span>{sites.find((site) => site.id === item.siteId)?.url}</span>
+                <span className={item.status === "DRAFT" ? "btn_dark btn" : "btn_green btn"  }>{item.status === "DRAFT" ? "Finalize" : "Results"}</span>
+              </div>
+            )
+
           ))}
         </>
       }
