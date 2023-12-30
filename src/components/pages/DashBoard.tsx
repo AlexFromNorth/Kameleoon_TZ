@@ -21,7 +21,6 @@ const DashBoard = () => {
     searchItems().then((data) => {
       setItems(data);
     });
-    console.log('rerender')
   }, []);
 
   return (
@@ -50,7 +49,7 @@ const DashBoard = () => {
             <span>SITE</span>
           </div>
           {items?.map((item: Test) => (
-            new RegExp(input).test(item.name)&& (
+            new RegExp(input.toUpperCase()).test(item.name.toUpperCase())&& (
               <div key={item.id} className={`gridTable tableItem ` + `color` + item.siteId } >
                 <span>{item.name}</span>
                 <span>{item.type}</span>
