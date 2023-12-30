@@ -8,11 +8,7 @@ const DashBoard = () => {
 
   const [items, setItems] = useState<Array<Test>>();
   const [sites, setSites] = useState<Array<Site>>([]);
-  const [input, setInput] = useState<string>('a');
-
-  useEffect(() => {
-
-  }, [input])
+  const [input, setInput] = useState<string>('');
 
   useEffect(() => {
     searchSites().then((data) => {
@@ -40,14 +36,17 @@ const DashBoard = () => {
           <h3>Download...</h3>
         </> :   
 
-        // render items
         <>
+        
         <div  className="gridTable">
             <span>NAME</span>
             <span>TYPE</span>
             <span>STATUS</span>
             <span>SITE</span>
           </div>
+
+           {/* render items */}
+          
           {items?.map((item: Test) => (
             new RegExp(input.toUpperCase()).test(item.name.toUpperCase())&& (
               <div key={item.id} className={`gridTable tableItem ` + `color` + item.siteId } >
@@ -60,6 +59,14 @@ const DashBoard = () => {
             )
 
           ))}
+
+          {/* render element if dont hame creteria */}
+          {new RegExp(input.toUpperCase()).test(items[0].name.toUpperCase()) === false && (
+            <>
+              <p>Your search did not match any results.</p>
+              <button onClick={()=>{setInput('')}}>Reset</button>
+            </>
+          )}
         </>
       }
 
