@@ -7,6 +7,7 @@ import { searchItems, searchSites } from "../../api/Api";
 const DashBoard = () => {
 
   const [items, setItems] = useState<Array<Test>>([]);
+  const [itemSearch, setItemSearch] = useState<Array<Test>>(items)
   const [sites, setSites] = useState<Array<Site>>([]);
   const [input, setInput] = useState<string>('');
 
@@ -22,40 +23,9 @@ const DashBoard = () => {
     });
   }, []);
 
-  let itemsSearch:any = items
-  // let itemLength:number = items?.length
-
-  const [itemLength, setItemLength] = useState(items?.length)
-
   const inputHandler = (e:any) => {
-    setItemLength(0)
-
-    setInput(e.target.value)
-    // itemsSearch = items
-    // if(e){
-        itemsSearch = items.map((item, el)=>{
-          if(new RegExp(input.toUpperCase()).test(item.name.toUpperCase())){
-            // setItemsHandler(itemsHandler =>  itemsHandler + 1)
-            // itemLength++
-            setItemLength(itemLength => itemLength + 1)
-
-            return item
-          }
-          else{
-            // count--
-            // setItemsHandler(itemsHandler =>  itemsHandler - 1)
-
-            // return undefined
-            // itemsSearch.splice(el,1)
-            // console.log(itemsSearch.length)
-          }
-          console.log(itemLength)
-        })
-    // }
-    // setItemsHandler(e.target.value)
+    
   }
-
-  // console.log(items?.length)
 
   return (
     <div className="container">
@@ -63,7 +33,7 @@ const DashBoard = () => {
       <div className="w100 search__input">
         <img src="" alt="search" />
         <input type="text" placeholder="What test are you looking for?" value={input} onChange={inputHandler}/>
-        <span ref={ref}>{itemLength} tests</span>
+        <span>{items?.length} tests</span>
       </div>
 
       {/* render data from api */}
