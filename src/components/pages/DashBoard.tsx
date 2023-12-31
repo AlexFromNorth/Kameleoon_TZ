@@ -11,9 +11,6 @@ const DashBoard = () => {
   const [sites, setSites] = useState<Array<Site>>([]);
   const [input, setInput] = useState<string>('');
 
-  const ref = useRef(null)
-
-
   useEffect(() => {
     searchSites().then((data) => {
       setSites(data);
@@ -23,8 +20,17 @@ const DashBoard = () => {
     });
   }, []);
 
+  useEffect(() => {
+    setItemSearch(items)
+  }, [items]);
+
+  useEffect(()=>{
+    const result = items.filter((item)=>new RegExp(input.toUpperCase()).test(item.name.toUpperCase()))
+    setItemSearch(result)
+  },[input])
+
   const inputHandler = (e:any) => {
-    
+    setInput(e.target.value)
   }
 
   return (
@@ -32,8 +38,8 @@ const DashBoard = () => {
       <h3>Dashboard</h3>
       <div className="w100 search__input">
         <img src="" alt="search" />
-        <input type="text" placeholder="What test are you looking for?" value={input} onChange={inputHandler}/>
-        <span>{items?.length} tests</span>
+        <input type="text" placeholder="What test are you looking for?" value={input} onChange={(inputHandler)}/>
+        <span>{itemSearch?.length} tests</span>
       </div>
 
       {/* render data from api */}
@@ -55,8 +61,9 @@ const DashBoard = () => {
 
            {/* render items */}
           
-          {items?.map((item: Test) => 
-            new RegExp(input.toUpperCase()).test(item.name.toUpperCase()) && (
+          {itemSearch?.map((item: Test) => 
+            (
+            // new RegExp(input.toUpperCase()).test(item.name.toUpperCase()) && (
               <div key={item.id} className={`gridTable tableItem ` + `color` + item.siteId } >
                 <span>{item.name}</span>
                 <span>{item.type}</span>
@@ -76,8 +83,6 @@ const DashBoard = () => {
           )}
         </>
       }
-
-
 
     </div>
   );
