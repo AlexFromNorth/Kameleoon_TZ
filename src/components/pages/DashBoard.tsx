@@ -40,82 +40,35 @@ const DashBoard = () => {
   const [sortField, setSortField] = useState(undefined) //type
   const [sortOrder, setSortOrder] = useState<boolean|undefined>(undefined) //ask/desk
 
+  
+  const statusOrder = ["ONLINE", "PAUSED", "STOPPED", "DRAFT"]
+
   const sortHandler = (field:keyof Test) => {
 
-    if(sortOrder !=true){
-      setSortOrder(true)
+      setSortOrder(!sortOrder)
+
       itemSearch.sort((a, b) =>{ 
-        // const [field]
-        const fieldName = a[field], fieldName2 = b[field]
-        if(typeof fieldName == 'string' && typeof fieldName2 == 'string' ){
-            return fieldName.localeCompare(fieldName2)
-        } else if(typeof fieldName == 'number' && typeof fieldName2 == 'number') {
-            return fieldName - fieldName2;
+        const fieldA = a[field].toString(), fieldB = b[field].toString()
+        if(field === 'siteId'){
+
+          const urlA = sites.find(( { id } ) => id === a[field])?.url,
+                urlB = sites.find(( { id } ) => id === b[field])?.url
+
+          if(urlA == 'string' && urlB == 'string'){
+            return sortOrder ? urlA?.localeCompare(urlB) : urlB?.localeCompare(urlA)
+          }
         }
-        return 0
-    });
+
+        if (field === 'status') {
+          return sortOrder ? statusOrder.indexOf(fieldA) - statusOrder.indexOf(fieldB) : statusOrder.indexOf(fieldB) - statusOrder.indexOf(fieldA)
+        }
+        
+        else {
+          return sortOrder ? fieldA.localeCompare(fieldB) : fieldB.localeCompare(fieldA)
+        }
+      });
     }
-    else{
-      setSortOrder(false)
-      // itemSearch.sort((a, b) => b[field as keyof Test].localeCompare(a[field as keyof Test]));
-    }
 
-  }
-
-
-
-  // const [sortName, setSortName] = useState<boolean|undefined>(undefined)
-  // const sortNameHandler = () => {
-  //   if(sortName != true ){
-  //     setSortName(true)
-  //     itemSearch.sort((a, b) => a.name.localeCompare(b.name));
-  //   }
-  //   else{
-  //     setSortName(false)
-  //     itemSearch.sort((a, b) => b.name.localeCompare(a.name));
-  //   }
-  // }
-
-  // console.log(itemSearch)
-
-  // const [sortType, setSortType] = useState<boolean|undefined>(undefined)
-  // const sortTypeHandler = () => {
-  //   console.clear()
-  //   itemSearch.forEach(el=>console.log(el.type))
-
-  //   if(sortType != true ){
-  //     setSortType(true)
-  //     itemSearch.sort((a, b) => a.name.localeCompare(b.name));
-  //   }
-  //   else{
-  //     setSortType(false)
-  //     itemSearch.sort((a, b) => b.name.localeCompare(a.name));
-  //   }
-  // }
-
-  // const [sortStatus, setSortStatus] = useState<boolean|undefined>(undefined)
-  // const sortStatusHandler = () => {
-  //   if(sortStatus != true ){
-  //     setSortStatus(true)
-  //     itemSearch.sort((a, b) => a.name.localeCompare(b.name));
-  //   }
-  //   else{
-  //     setSortStatus(false)
-  //     itemSearch.sort((a, b) => b.name.localeCompare(a.name));
-  //   }
-  // }
-
-  // const [sortSite, setSortSite] = useState<boolean|undefined>(undefined)
-  // const sortSiteHandler = () => {
-  //   if(sortSite != true ){
-  //     setSortSite(true)
-  //     itemSearch.sort((a, b) => a.name.localeCompare(b.name));
-  //   }
-  //   else{
-  //     setSortSite(false)
-  //     itemSearch.sort((a, b) => b.name.localeCompare(a.name));
-  //   }
-  // }
 
 
   // --------------
@@ -148,9 +101,9 @@ const DashBoard = () => {
         <>
           <div className="gridTable">
             <span onClick={()=>{sortHandler('name')}}>NAME</span>
-            {/* <span onClick={sortTypeHandler}>TYPE</span> */}
-            {/* <span onClick={sortStatusHandler}>STATUS</span> */}
-            {/* <span onClick={sortSiteHandler}>SITE</span> */}
+            <span onClick={()=>{sortHandler('type')}}>TYPE</span>
+            <span onClick={()=>{sortHandler('status')}}>STATUS</span>
+            <span onClick={()=>{sortHandler('siteId')}}>SITE</span>
           </div>
 
           {/* render items */}
