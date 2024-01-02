@@ -49,20 +49,20 @@ const DashBoard = () => {
 
       itemSearch.sort((a, b) =>{ 
         const fieldA = a[field].toString(), fieldB = b[field].toString()
+        // Sort sites
         if(field === 'siteId'){
-
-          const urlA = sites.find(( { id } ) => id === a[field])?.url,
-                urlB = sites.find(( { id } ) => id === b[field])?.url
+          const urlA = sites.find(( { id } ) => id === a[field])?.url.replace(/https?:\/\/(www\.)?/gm, ''),
+                urlB = sites.find(( { id } ) => id === b[field])?.url.replace(/https?:\/\/(www\.)?/gm, '')
 
           if(urlA == 'string' && urlB == 'string'){
             return sortOrder ? urlA?.localeCompare(urlB) : urlB?.localeCompare(urlA)
           }
         }
-
+        // Sort status
         if (field === 'status') {
           return sortOrder ? statusOrder.indexOf(fieldA) - statusOrder.indexOf(fieldB) : statusOrder.indexOf(fieldB) - statusOrder.indexOf(fieldA)
         }
-        
+        // Other sorts
         else {
           return sortOrder ? fieldA.localeCompare(fieldB) : fieldB.localeCompare(fieldA)
         }
@@ -129,7 +129,7 @@ const DashBoard = () => {
               >
                 {item.status}
               </span>
-              <span>{sites.find((site) => site.id === item.siteId)?.url}</span>
+              <span>{sites.find((site) => site.id === item.siteId)?.url.replace(/https?:\/\/(www\.)?/gm, '')}</span>
               <span
                 className={
                   item.status === "DRAFT" ? "btn_dark btn" : "btn_green btn"
