@@ -5,7 +5,7 @@
 /* -------- */
 
 .container{
-  margin: 48px;
+  padding: 49px;
 }
 .w100{
   width: 100%;
@@ -84,4 +84,10 @@
 }
 .btn_dark{
   background-color: var(--default-color_grey);
+}
+
+.btn__back{
+  position: absolute;
+  left: 49px;
+  bottom: 49px;
 }

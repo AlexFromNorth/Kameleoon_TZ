@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Site, Test } from "../../types/types";
 
@@ -97,7 +97,7 @@ const DashBoard = () => {
       {!sites || !items ? (
         /* Refresh this page  */
         <>
-          <h3>Download...</h3>
+          <h3>Refresh this page...</h3>
         </>
       ) : (
         <>
@@ -140,22 +140,22 @@ const DashBoard = () => {
               </Link>
             </div>
           ))}
-
-          {/* Render element if dont hame creteria */}
-
-            <>
-              <p>Your search did not match any results.</p>
-              <button
-                onClick={() => {
-                  setInput("");
-                }}
-              >
-                Reset
-              </button>
-            </>
-          
         </>
       )}
+                {/* Render element if dont hame creteria */}
+            {sites && items && itemSearch.length == 0 ? (
+              <>
+                <p>Your search did not match any results.</p>
+                <button
+                  onClick={() => {
+                    setInput("");
+                  }}
+                >
+                  Reset
+                </button>
+              </>
+            ):('')}
+
     </div>
   );
 };
