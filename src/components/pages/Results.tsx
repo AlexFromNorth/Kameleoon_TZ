@@ -6,7 +6,7 @@ const Results = () => {
 
   return (
     <div className="container">
-      <h3>Dashboard</h3>
+      <h3>Results</h3>
       <h4>Spring promotion</h4>
       <button className='btn__back' onClick={() => navigate(-1)}>Back</button>
 

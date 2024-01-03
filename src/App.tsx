@@ -4,6 +4,7 @@ import DashBoard from "./components/pages/DashBoard";
 import { Route, Routes } from "react-router-dom";
 import Finalize from "./components/pages/Finalize";
 import Results from "./components/pages/Results";
+import NotFound from "./components/pages/notFound/NotFound";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<DashBoard />} />
         <Route path="/finalize" element={<Finalize />} />
         <Route path="/results" element={<Results />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </>
   );
