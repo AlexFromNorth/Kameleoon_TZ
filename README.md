@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# Проект [Kameleoon](https://github.com/AlexFromNorth/Kameleoon_TZ) | Frontend / Api
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 📜 Описание:
+Single Page Application для получения и фильтрации данных с Api. Созданно с применением `Create React App` и имеет переиспользуемые компоненты. 
+В данном приложение возможно переходить между страницами без перезагрузки и возвращаться на предыдущую, использовать поиск.
+Данный функционал реализован на TypeScript и React Hooks, так же применены регулярные выражения для фильтрации.
+При переходе на несуществующую страницу будет показана страница "404 ошибка".
+Добавлен инкапсулированный css.
 
-## Available Scripts
+### 📲 Как пользоватся:
+* Возможно отсортировывать (ask/desk) по категориями Name, Type, Status, Site.
+* Возможно переходить между страницами /, Results, Finalize и обратно.
+* Используйте поиск при необходимости, uppercase не влияет.
 
-In the project directory, you can run:
 
-### `yarn start`
+### 🥞 Стек:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`HTML5` `CSS3` `React` `TypeScript` `axios`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 💽 Установка и запуск:
 
-### `yarn test`
+1. Склонировать репозиторий c данными:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```git clone https://development.kameleoon.net/oivanov/frontend-interview-task-api.git ```
 
-### `yarn build`
+2. Установить зависимости:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```npm install```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Запустить проект в режиме разработки:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```npm start```
 
-### `yarn eject`
+-----
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Склонировать репозиторий c проектом:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```git clone https://github.com/AlexFromNorth/Kameleoon_TZ.git ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+5. Установить зависимости:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```npm install```
 
-## Learn More
+6. Запустить проект:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```npm start```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+<br />
+<br />
+<img src="public/images/mainPage.png" alt="demo main">
+<br />
+<br />
+<img src="public/images/Search.png" alt="demo search" >
+<br />
+<br />
+<img src="public/images/Results.png" alt="demo results" >
+<br />
+<br />
+<img src="public/images/404page.png" alt="demo 404page">
+<br />
+<br />

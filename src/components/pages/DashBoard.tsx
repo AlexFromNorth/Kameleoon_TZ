@@ -157,7 +157,7 @@ const DashBoard = () => {
       ) : sites && items && itemSearch.length != 0 ? (
         <>
           <div className="gridTable">
-            <span className={sortOrder? 'red' : 'green'}
+            <span
               onClick={(e) => {
                 sortHandler("name");
               }}
@@ -232,7 +232,7 @@ const DashBoard = () => {
       ) : (
 
         // Render element if dont hame creteria
-        
+
         <div className="center">
           <p>Your search did not match any results.</p>
           <button
