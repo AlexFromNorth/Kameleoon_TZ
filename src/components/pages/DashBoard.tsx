@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import React, { useEffect, useState } from "react";
 
 import Search from "../../assets/Search.svg";
@@ -5,15 +7,34 @@ import Search from "../../assets/Search.svg";
 import { Site, Test } from "../../types/types";
 
 import { searchItems, searchSites } from "../../api/Api";
-import { Link } from "react-router-dom";
 
 const DashBoard = () => {
+  
+  // ------
+  // ------
+  // States
+  // ------
+  // ------
+
   const [items, setItems] = useState<Array<Test>>([]);
   const [itemSearch, setItemSearch] = useState<Array<Test>>(items);
   const [sites, setSites] = useState<Array<Site>>([]);
+
   const [input, setInput] = useState<string>("");
+  
+  // -------
+  // -------
+  // Regular
+  // -------
+  // -------
 
   const re = /https?:\/\/(www\.)?/gm;
+
+  // -------------
+  // -------------
+  // Download data
+  // -------------
+  // -------------
 
   useEffect(() => {
     searchSites().then((data) => {
@@ -28,6 +49,12 @@ const DashBoard = () => {
     setItemSearch(items);
   }, [items]);
 
+  // -------------
+  // -------------
+  // Search filter 
+  // -------------
+  // -------------
+
   useEffect(() => {
     const result = items.filter((item) =>
       new RegExp(input.toUpperCase()).test(item.name.toUpperCase())
@@ -39,7 +66,12 @@ const DashBoard = () => {
     setInput(e.target.value);
   };
 
-  // sort functions
+  // -------------- 
+  // -------------- 
+  // Sort functions
+  // -------------- 
+  // -------------- 
+
   const [sortOrder, setSortOrder] = useState<boolean | undefined>(undefined); //ask/desk
 
   const statusOrder = ["ONLINE", "PAUSED", "STOPPED", "DRAFT"];
@@ -50,7 +82,13 @@ const DashBoard = () => {
     itemSearch.sort((a, b) => {
       const fieldA = a[field].toString(),
         fieldB = b[field].toString();
+      
+      // ----------
+      // ----------
       // Sort sites
+      // ----------
+      // ----------
+      
       if (field === "siteId") {
         const urlA = sites
             .find(({ id }) => id === a[field])
@@ -63,13 +101,25 @@ const DashBoard = () => {
             : urlB?.localeCompare(urlA);
         }
       }
+
+      // -----------
+      // -----------
       // Sort status
+      // -----------
+      // -----------
+
       if (field === "status") {
         return sortOrder
           ? statusOrder.indexOf(fieldA) - statusOrder.indexOf(fieldB)
           : statusOrder.indexOf(fieldB) - statusOrder.indexOf(fieldA);
       }
+
+      // -----------
+      // -----------
       // Other sorts
+      // -----------
+      // -----------
+      
       else {
         return sortOrder
           ? fieldA.localeCompare(fieldB)
@@ -107,8 +157,8 @@ const DashBoard = () => {
       ) : sites && items && itemSearch.length != 0 ? (
         <>
           <div className="gridTable">
-            <span
-              onClick={() => {
+            <span className={sortOrder? 'red' : 'green'}
+              onClick={(e) => {
                 sortHandler("name");
               }}
             >
@@ -180,7 +230,9 @@ const DashBoard = () => {
           ))}
         </>
       ) : (
+
         // Render element if dont hame creteria
+        
         <div className="center">
           <p>Your search did not match any results.</p>
           <button

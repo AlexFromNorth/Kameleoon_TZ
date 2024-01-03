@@ -61,6 +61,9 @@
   border-radius: 3px;
   text-align: left;
 }
+.gridTable span{
+  cursor: pointer;
+}
 .tableItem{
   background-color: var(--bg-white);
   border-left: 4px solid black;
