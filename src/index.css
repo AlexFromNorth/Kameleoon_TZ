@@ -4,33 +4,63 @@
 /* --------- */
 /* --------- */
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap');
+
 body,
-html{
+html {
   margin: 0;
   height: 100vh;
   position: relative;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Roboto", sans-serif;
   background-color: var(--bg-grey);
   font-size: var(--default-size);
-  color: var(--default-color_grey);
+  color: var(--dark-color_grey);
   font-style: normal;
 }
 
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  cursor: default;
+}
+a {
+  text-decoration: none;
+}
+
 h3 {
-  color: #222;
+  color: var(--black);
   font-size: 26px;
   font-weight: 700;
   margin: 0;
   margin-bottom: 40px;
+  font-family: "Montserrat", sans-serif;
 }
 h4 {
-  color: #222;
+  color: var(--black);
   font-size: 14px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+
+button {
+  color: var(--black) !important;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+input::placeholder {
+  color: var(--color-placeholder);
+}
+input {
+  outline: none;
+  color: var(--dark-color_grey)!important;
   font-weight: 600;
 }
 
@@ -41,14 +71,17 @@ h4 {
 /* -------- */
 
 :root {
+  --color-placeholder: #D1D1D1;
+  --black: #222;
   --default-size: 12px;
   --default-color_grey: #5c5c5c;
+  --dark-color_grey: #474747;
   --bg-grey: #fafafa;
   --bg-white: white;
   --border-orange: #e14165;
   --border-blue: #8686ff;
   --border-light_blue: #c2c2ff;
-  --border-grey: #D1D1D1;
+  --border-grey: #d1d1d1;
   --green: #2ee5ac;
   --orange: #ff8346;
   --red: #fe4848;

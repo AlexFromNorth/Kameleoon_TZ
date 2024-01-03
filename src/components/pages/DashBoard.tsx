@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import Search from "../../assets/Search.svg";
+
 import { Site, Test } from "../../types/types";
 
 import { searchItems, searchSites } from "../../api/Api";
@@ -11,7 +13,7 @@ const DashBoard = () => {
   const [sites, setSites] = useState<Array<Site>>([]);
   const [input, setInput] = useState<string>("");
 
-  const re = /https?:\/\/(www\.)?/gm
+  const re = /https?:\/\/(www\.)?/gm;
 
   useEffect(() => {
     searchSites().then((data) => {
@@ -38,40 +40,43 @@ const DashBoard = () => {
   };
 
   // sort functions
-  const [sortOrder, setSortOrder] = useState<boolean|undefined>(undefined) //ask/desk
+  const [sortOrder, setSortOrder] = useState<boolean | undefined>(undefined); //ask/desk
 
-  
-  const statusOrder = ["ONLINE", "PAUSED", "STOPPED", "DRAFT"]
+  const statusOrder = ["ONLINE", "PAUSED", "STOPPED", "DRAFT"];
 
-  const sortHandler = (field:keyof Test) => {
+  const sortHandler = (field: keyof Test) => {
+    setSortOrder(!sortOrder);
 
-      setSortOrder(!sortOrder)
+    itemSearch.sort((a, b) => {
+      const fieldA = a[field].toString(),
+        fieldB = b[field].toString();
+      // Sort sites
+      if (field === "siteId") {
+        const urlA = sites
+            .find(({ id }) => id === a[field])
+            ?.url.replace(re, ""),
+          urlB = sites.find(({ id }) => id === b[field])?.url.replace(re, "");
 
-      itemSearch.sort((a, b) =>{ 
-        const fieldA = a[field].toString(), fieldB = b[field].toString()
-        // Sort sites
-        if(field === 'siteId'){
-          const urlA = sites.find(( { id } ) => id === a[field])?.url.replace(re, ''),
-                urlB = sites.find(( { id } ) => id === b[field])?.url.replace(re, '')
-
-          if(urlA == 'string' && urlB == 'string'){
-            return sortOrder ? urlA?.localeCompare(urlB) : urlB?.localeCompare(urlA)
-          }
+        if (urlA == "string" && urlB == "string") {
+          return sortOrder
+            ? urlA?.localeCompare(urlB)
+            : urlB?.localeCompare(urlA);
         }
-        // Sort status
-        if (field === 'status') {
-          return sortOrder ? statusOrder.indexOf(fieldA) - statusOrder.indexOf(fieldB) : statusOrder.indexOf(fieldB) - statusOrder.indexOf(fieldA)
-        }
-        // Other sorts
-        else {
-          return sortOrder ? fieldA.localeCompare(fieldB) : fieldB.localeCompare(fieldA)
-        }
-      });
-    }
-
-
-
-
+      }
+      // Sort status
+      if (field === "status") {
+        return sortOrder
+          ? statusOrder.indexOf(fieldA) - statusOrder.indexOf(fieldB)
+          : statusOrder.indexOf(fieldB) - statusOrder.indexOf(fieldA);
+      }
+      // Other sorts
+      else {
+        return sortOrder
+          ? fieldA.localeCompare(fieldB)
+          : fieldB.localeCompare(fieldA);
+      }
+    });
+  };
 
   // --------------
   // --------------
@@ -83,7 +88,7 @@ const DashBoard = () => {
     <div className="container">
       <h3>Dashboard</h3>
       <div className="w100 search__input">
-        <img src="" alt="search" />
+        <img src={Search} alt="search" />
         <input
           type="text"
           placeholder="What test are you looking for?"
@@ -99,13 +104,37 @@ const DashBoard = () => {
         <>
           <h3>Refresh this page...</h3>
         </>
-      ) : (
+      ) : sites && items && itemSearch.length != 0 ? (
         <>
           <div className="gridTable">
-            <span onClick={()=>{sortHandler('name')}}>NAME</span>
-            <span onClick={()=>{sortHandler('type')}}>TYPE</span>
-            <span onClick={()=>{sortHandler('status')}}>STATUS</span>
-            <span onClick={()=>{sortHandler('siteId')}}>SITE</span>
+            <span
+              onClick={() => {
+                sortHandler("name");
+              }}
+            >
+              NAME
+            </span>
+            <span
+              onClick={() => {
+                sortHandler("type");
+              }}
+            >
+              TYPE
+            </span>
+            <span
+              onClick={() => {
+                sortHandler("status");
+              }}
+            >
+              STATUS
+            </span>
+            <span
+              onClick={() => {
+                sortHandler("siteId");
+              }}
+            >
+              SITE
+            </span>
           </div>
 
           {/* Render items */}
@@ -130,8 +159,17 @@ const DashBoard = () => {
               >
                 {item.status}
               </span>
-              <span>{sites.find((site) => site.id === item.siteId)?.url.replace(re, '')}</span>
-              <Link to={item.status === "DRAFT" ? `finalize/${item.siteId}` : `results/${item.siteId}`}
+              <span>
+                {sites
+                  .find((site) => site.id === item.siteId)
+                  ?.url.replace(re, "")}
+              </span>
+              <Link
+                to={
+                  item.status === "DRAFT"
+                    ? `finalize/${item.siteId}`
+                    : `results/${item.siteId}`
+                }
                 className={
                   item.status === "DRAFT" ? "btn_dark btn" : "btn_green btn"
                 }
@@ -141,21 +179,20 @@ const DashBoard = () => {
             </div>
           ))}
         </>
+      ) : (
+        // Render element if dont hame creteria
+        <div className="center">
+          <p>Your search did not match any results.</p>
+          <button
+            className="btn_green btn"
+            onClick={() => {
+              setInput("");
+            }}
+          >
+            Reset
+          </button>
+        </div>
       )}
-                {/* Render element if dont hame creteria */}
-            {sites && items && itemSearch.length == 0 ? (
-              <>
-                <p>Your search did not match any results.</p>
-                <button
-                  onClick={() => {
-                    setInput("");
-                  }}
-                >
-                  Reset
-                </button>
-              </>
-            ):('')}
-
     </div>
   );
 };

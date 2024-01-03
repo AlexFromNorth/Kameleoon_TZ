@@ -10,12 +10,28 @@
 .w100{
   width: 100%;
 }
+.center{
+  text-align: center;
+  font-size: 18px;
+}
+.center  button{
+  font-size: 12px;  
+}
+/* -------- */
+/* -------- */
+/* pages */
+/* -------- */
+/* -------- */
 
 /* search */
 .search__input{
   border: 1px solid var(--border-grey);
   border-radius: 10px;
-  background-color: yellow;
+  background-color: var(--bg-white);
+  border: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .search__input img{
   margin: 15px;
@@ -23,12 +39,16 @@
 }
 .search__input input{
   width: calc(100% - 200px);
-  background-color: red;
+  border: none;
 }
 .search__input span{
   width: 100px;
   display: inline-block;
   text-align: center;
+}
+
+.center p{
+  margin: 11% 0 4%;
 }
 
 /* items */
@@ -44,6 +64,11 @@
 .tableItem{
   background-color: var(--bg-white);
   border-left: 4px solid black;
+  cursor: pointer;
+  transition: .4s;
+}
+.tableItem:hover{
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
 }
 .tableItem > *{
   align-self: center;
@@ -73,11 +98,14 @@
 
 /* btns */
 .btn{
-  padding: 10px;
-  color: white;
+  padding: 10px 25px;
+  color: white!important;
+  font-weight: 600;
   border-radius: 10px;
   text-align: center;
   max-width: 95px;
+  border: none;
+  font-family: "Montserrat", sans-serif;
 }
 .btn_green{
   background-color: var(--green);
@@ -90,4 +118,18 @@
   position: absolute;
   left: 49px;
   bottom: 49px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.btn__back img{
+  height: 20px;
+}
+.btn__back button{
+  font-weight: 700;
+  margin-left: 19px;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
 }

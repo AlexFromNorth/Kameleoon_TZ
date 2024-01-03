@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <>
-      <h1 className={style.label}>404 Error Page #2</h1>
+      <h1 className={style.label}>404 Error Page</h1>
       <p className={style.zoom__area}>
         <b>CSS</b> animations to make a cool 404 page.{" "}
       </p>
