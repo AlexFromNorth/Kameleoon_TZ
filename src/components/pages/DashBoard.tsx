@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Site, Test } from "../../types/types";
 
 import { searchItems, searchSites } from "../../api/Api";
+import { Link } from "react-router-dom";
 
 const DashBoard = () => {
   const [items, setItems] = useState<Array<Test>>([]);
@@ -69,7 +70,7 @@ const DashBoard = () => {
     }
 
 
-    
+
 
 
   // --------------
@@ -130,13 +131,13 @@ const DashBoard = () => {
                 {item.status}
               </span>
               <span>{sites.find((site) => site.id === item.siteId)?.url.replace(re, '')}</span>
-              <span
+              <Link to={item.status === "DRAFT" ? "finalize" : "results"}
                 className={
                   item.status === "DRAFT" ? "btn_dark btn" : "btn_green btn"
                 }
               >
                 {item.status === "DRAFT" ? "Finalize" : "Results"}
-              </span>
+              </Link>
             </div>
           ))}
 

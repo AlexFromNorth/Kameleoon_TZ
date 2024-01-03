@@ -1,15 +1,17 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import DashBoard from "./components/pages/DashBoard";
 import { Route, Routes } from "react-router-dom";
+import Finalize from "./components/pages/Finalize";
+import Results from "./components/pages/Results";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<DashBoard />} />
-        {/* <Route path="about" element={<About />} /> */}
+        <Route path="/finalize" element={<Finalize />} />
+        <Route path="/results" element={<Results />} />
       </Routes>
     </>
   );
