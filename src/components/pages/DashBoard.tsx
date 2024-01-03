@@ -10,7 +10,7 @@ const DashBoard = () => {
   const [sites, setSites] = useState<Array<Site>>([]);
   const [input, setInput] = useState<string>("");
 
-  const [test, setTest] = useState(0);
+  const re = /https?:\/\/(www\.)?/gm
 
   useEffect(() => {
     searchSites().then((data) => {
@@ -37,7 +37,6 @@ const DashBoard = () => {
   };
 
   // sort functions
-  const [sortField, setSortField] = useState(undefined) //type
   const [sortOrder, setSortOrder] = useState<boolean|undefined>(undefined) //ask/desk
 
   
@@ -51,8 +50,8 @@ const DashBoard = () => {
         const fieldA = a[field].toString(), fieldB = b[field].toString()
         // Sort sites
         if(field === 'siteId'){
-          const urlA = sites.find(( { id } ) => id === a[field])?.url.replace(/https?:\/\/(www\.)?/gm, ''),
-                urlB = sites.find(( { id } ) => id === b[field])?.url.replace(/https?:\/\/(www\.)?/gm, '')
+          const urlA = sites.find(( { id } ) => id === a[field])?.url.replace(re, ''),
+                urlB = sites.find(( { id } ) => id === b[field])?.url.replace(re, '')
 
           if(urlA == 'string' && urlB == 'string'){
             return sortOrder ? urlA?.localeCompare(urlB) : urlB?.localeCompare(urlA)
@@ -69,6 +68,8 @@ const DashBoard = () => {
       });
     }
 
+
+    
 
 
   // --------------
@@ -93,7 +94,7 @@ const DashBoard = () => {
 
       {/* render data from api */}
       {!sites || !items ? (
-        /* download  */
+        /* Refresh this page  */
         <>
           <h3>Download...</h3>
         </>
@@ -106,10 +107,9 @@ const DashBoard = () => {
             <span onClick={()=>{sortHandler('siteId')}}>SITE</span>
           </div>
 
-          {/* render items */}
+          {/* Render items */}
 
           {itemSearch?.map((item: Test) => (
-            // new RegExp(input.toUpperCase()).test(item.name.toUpperCase()) && (
             <div
               key={item.id}
               className={`gridTable tableItem color` + item.siteId}
@@ -129,7 +129,7 @@ const DashBoard = () => {
               >
                 {item.status}
               </span>
-              <span>{sites.find((site) => site.id === item.siteId)?.url.replace(/https?:\/\/(www\.)?/gm, '')}</span>
+              <span>{sites.find((site) => site.id === item.siteId)?.url.replace(re, '')}</span>
               <span
                 className={
                   item.status === "DRAFT" ? "btn_dark btn" : "btn_green btn"
@@ -140,7 +140,7 @@ const DashBoard = () => {
             </div>
           ))}
 
-          {/* render element if dont hame creteria */}
+          {/* Render element if dont hame creteria */}
 
             <>
               <p>Your search did not match any results.</p>
