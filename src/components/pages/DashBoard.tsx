@@ -131,7 +131,7 @@ const DashBoard = () => {
                 {item.status}
               </span>
               <span>{sites.find((site) => site.id === item.siteId)?.url.replace(re, '')}</span>
-              <Link to={item.status === "DRAFT" ? "finalize" : "results"}
+              <Link to={item.status === "DRAFT" ? `finalize/${item.siteId}` : `results/${item.siteId}`}
                 className={
                   item.status === "DRAFT" ? "btn_dark btn" : "btn_green btn"
                 }

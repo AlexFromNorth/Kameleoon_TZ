@@ -11,8 +11,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<DashBoard />} />
-        <Route path="/finalize" element={<Finalize />} />
-        <Route path="/results" element={<Results />} />
+        <Route path="/finalize/:id" element={<Finalize />} />
+        <Route path="/results/:id" element={<Results />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </>
